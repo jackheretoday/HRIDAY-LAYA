@@ -3,140 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HRIDAY-ALAYA - Home</title>
+  <title>हृदय-lay - Home</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  
   <style>
-    /* Custom animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: black; /* Permanent Dark Mode */
+      color: white; /* White Text */
     }
 
-    @keyframes scaleIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    .heart-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
     }
 
-    .fade-in {
-      animation: fadeIn 1s ease-out;
-    }
-
-    .scale-in {
-      animation: scaleIn 0.5s ease-out;
-    }
-
-    /* Container for Three.js canvas */
-    .threejs-container {
-      width: 100%;
-      height: 300px;
-      position: relative;
-      margin: 0 auto;
+    .heart-img {
+      width: 200px;
+      height: auto;
     }
   </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
   <!-- Navigation Bar -->
-  <nav class="bg-blue-600 p-4 text-white">
+  <nav class="bg-gradient-to-r from-red-600 via-purple-500 to-blue-600 p-4 text-white">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="text-2xl font-bold">HRIDAY-ALAYA</div>
+      <div class="text-4xl font-bold">हृदय-lay</div>
       <div>
-        <a href="#" class="mx-2 hover:text-gray-200">Home</a>
-        <a href="#" class="mx-2 hover:text-gray-200">About</a>
-        <a href="#" class="mx-2 hover:text-gray-200">Contact</a>
+        <a href="home.html" class="mx-2 hover:text-gray-300">Home</a>
+        <a href="about_us.txt" class="mx-2 hover:text-gray-300">About</a>
+        <a href="contact_us.txt" class="mx-2 hover:text-gray-300">Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <div class="container mx-auto px-4 py-16 text-center">
-    <h1 class="text-4xl font-bold text-gray-800 mb-4 fade-in">Welcome to HRIDAY-ALAYA</h1>
-    <p class="text-xl text-gray-600 mb-8 fade-in" style="animation-delay: 0.3s;">
+    <h1 class="text-4xl font-bold mb-4">Welcome to हृदय-lay</h1>
+    <p class="text-xl mb-8">
       Your trusted platform for heart health management. Join us in taking care of your heart.
     </p>
-    <div class="flex justify-center space-x-4 scale-in" style="animation-delay: 0.6s;">
-      <a href="{% url 'adminlogin' %}" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transform hover:scale-105 transition-transform">Admin</a>
-      <a href="{% url 'patient' %}" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transform hover:scale-105 transition-transform">Patient</a>
-      <a href="{% url 'doctor' %}" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transform hover:scale-105 transition-transform">Doctor</a>
+    
+    <!-- Beating Heart GIF -->
+    <div class="heart-container">
+      <img src="Tenor-unscreen-.gif" alt="Beating Heart" class="heart-img">
+    </div>
+
+    <div class="flex justify-center space-x-4 mt-6">
+      <a href="adminlogin.html" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-red-500 transform hover:scale-105 transition-transform">Admin</a>
+      <a href="patient.html" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-red-700 transform hover:scale-105 transition-transform">Patient</a>
+      <a href="doctor.html" class="bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-red-500 transform hover:scale-105 transition-transform">Doctor</a>
     </div>
   </div>
-
-  <!-- Features Section -->
-  <div class="container mx-auto px-4 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Feature 1 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in" style="animation-delay: 0.9s;">
-        <div class="threejs-container" id="admin-3d"></div>
-        <h3 class="text-xl font-bold text-gray-800 mb-4">Admin Dashboard</h3>
-        <p class="text-gray-600">Manage users, view reports, and oversee system operations.</p>
-      </div>
-      <!-- Feature 2 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in" style="animation-delay: 1.2s;">
-        <div class="threejs-container" id="patient-3d"></div>
-        <h3 class="text-xl font-bold text-gray-800 mb-4">Patient Portal</h3>
-        <p class="text-gray-600">Access your health data, predictions, and recommendations.</p>
-      </div>
-      <!-- Feature 3 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in" style="animation-delay: 1.5s;">
-        <div class="threejs-container" id="doctor-3d"></div>
-        <h3 class="text-xl font-bold text-gray-800 mb-4">Doctor Interface</h3>
-        <p class="text-gray-600">Analyze patient data and provide expert insights.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="bg-blue-600 text-white p-4 text-center">
-    <p>&copy; 2025 HRIDAY-ALAYA. All rights reserved.</p>
+  
+ <!-- Footer -->
+  <footer class="bg-gradient-to-r from-red-700 via-purple-600 to-blue-500 text-white p-4 text-center">
+    <p>&copy; 2025 हृदय-lay. All rights reserved.</p>
   </footer>
-
-  <!-- Three.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script>
-    // Function to create a 3D scene
-    function create3DScene(containerId, modelPath) {
-      const container = document.getElementById(containerId);
-
-      // Scene, Camera, Renderer
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      container.appendChild(renderer.domElement);
-
-      // Lighting
-      const light = new THREE.DirectionalLight(0xffffff, 1);
-      light.position.set(5, 5, 5).normalize();
-      scene.add(light);
-
-      // Load 3D Model
-      const loader = new THREE.GLTFLoader();
-      loader.load(modelPath, (gltf) => {
-        const model = gltf.scene;
-        scene.add(model);
-
-        // Position the model
-        model.position.set(0, -1, 0);
-        model.scale.set(0.5, 0.5, 0.5);
-
-        // Animation loop
-        const animate = () => {
-          requestAnimationFrame(animate);
-          model.rotation.y += 0.01;
-          renderer.render(scene, camera);
-        };
-        animate();
-      });
-
-      // Camera position
-      camera.position.z = 5;
-    }
-
-    // Initialize 3D scenes for each feature
-    create3DScene('admin-3d', 'https://threejs.org/examples/models/gltf/Duck/glTF/Duck.gltf'); // Replace with hospital-themed model
-    create3DScene('patient-3d', 'https://threejs.org/examples/models/gltf/Duck/glTF/Duck.gltf'); // Replace with hospital-themed model
-    create3DScene('doctor-3d', 'https://threejs.org/examples/models/gltf/Duck/glTF/Duck.gltf'); // Replace with hospital-themed model
-  </script>
 
 </body>
 </html>
