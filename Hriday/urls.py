@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-
+from Hriday.views import video_call
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',views.home,name='home'),
-    path('patient/',views.patient,name='patient'),  
-    path('adminlogin/', views.adminlogin, name='adminlogin'),  # Admin login page
-    path('doctor/', views.doctor, name='doctor'), 
+    path('adminlogin.html', admin.site.urls),
+    path('home.html',views.home,name='home'),
+    path('patient.html',views.patient,name='patient'),  
+    path('adminlogin.html', views.adminlogin, name='adminlogin'),  # Admin login page
+    path('doctor.html', views.doctor, name='doctor'), 
+    path('video_call.html', views.video_call, name='video_call'),
 ]
+
