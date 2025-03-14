@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Health Assessment</title>
+    <style>
+        body {
+            background-color: black;
+            color: #FFD700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: #222;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px #FFD700;
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 15px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 16px;
+        }
+        input, select {
+            background: #333;
+            color: white;
+        }
+        button {
+            background: #dbb408;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #E6C300;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Health Assessment</h2>
+        <form>
+            <input type="number" placeholder="Age" required>
+            <select required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <input type="number" placeholder="Chest Pain Level" required>
+            <select required>
+                <option value="No Pain">No Pain-0</option>
+                <option value="Little Pain">Little Pain-1</option>
+                <option value="Moderate Pain">Moderate Pain-2</option>
+                <option value="Extreme Pain">Extreme Pain-3</option>
+            <input type="number" id="bp" placeholder="Resting Blood Pressure" min="50" max="250" required>
+            <input type="number" placeholder="Serum Cholesterol" required>
+            <input type="number" placeholder="Fasting Blood Sugar" required>
+            <input type="number" placeholder="Resting Electrocardiographic Results" required>
+            <input type="number" placeholder="Max Heart Rate Achieved" min="60" max="220" required>
+            <select required>
+                <option value="">Exercise Induced Angina</option>
+                <option value="yes">1</option>
+                <option value="no">0</option>
+            </select>
+            <input type="number" placeholder="Oldpeak (ST Depression)" required>
+            <input type="number" placeholder="Slope of ST Segment" required>
+            <input type="number" placeholder="Number of Major Vessels" required>
+            <input type="number" placeholder="Target (0/1)" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

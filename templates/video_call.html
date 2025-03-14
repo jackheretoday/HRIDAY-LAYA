@@ -1,0 +1,23 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Video Call a Cardiologist</title>
+        <script src="https://meet.jit.si/external_api.js"></script>
+    </head>
+    <body>
+        <div id="jitsi-container" style="height: 720px; width: 100%;"></div>
+        <script>
+            var domain = "meet.jit.si";
+            var options = {
+                roomName: "Cardiologist",
+                width: "100%",
+                height: 720,
+                parentNode: document.querySelector("#jitsi-container"),
+                userInfo: {
+                    displayName: "Patient"
+                }
+            };
+            var api = new JitsiMeetExternalAPI(domain, options);
+        </script>
+    </body>
+</html>

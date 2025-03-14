@@ -1,0 +1,3 @@
+Hriday-lay(हृदय-lay) is a heart anomalies such as tachhycardia,braddycardia predictor. 
+We also have integrated A.I food recommendation for our Patients based on the heart issue. 
+Nearby cardiologist on map detector. Also,RTI. 
