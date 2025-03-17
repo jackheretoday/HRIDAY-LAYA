@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Health Assessment</title>
+    <title>Heart Disease Prediction</title>
     <style>
         body {
             background-color: black;
             color: #FFD700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            text-align: center;
             font-family: Arial, sans-serif;
+            padding-top: 50px;
         }
         .container {
             background: #222;
             padding: 20px;
             border-radius: 20px;
             box-shadow: 0px 0px 15px #FFD700;
-            width: 350px;
-            text-align: center;
-        }
-        h2 {
-            margin-bottom: 15px;
+            width: 400px;
+            margin: auto;
         }
         input, select, button {
             width: 100%;
@@ -43,45 +38,117 @@
             color: black;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
         }
         button:hover {
             background: #E6C300;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Heart Health Assessment</h2>
-        <form>
-            <input type="number" placeholder="Age" required>
-            <select required>
+        <h2>Heart Disease Prediction</h2>
+        <form id="predictionForm" method="POST" onsubmit="return validateForm()">
+            <!-- {% csrf_token %} -->
+            <input type="number" name="age" id="age" placeholder="Age (18-100)" min="18" max="100" required>
+            <span class="error" id="ageError">Age must be between 18 and 100</span>
+
+            <select name="gender" id="gender" required>
                 <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
             </select>
-            <input type="number" placeholder="Chest Pain Level" required>
-            <select required>
-                <option value="No Pain">No Pain-0</option>
-                <option value="Little Pain">Little Pain-1</option>
-                <option value="Moderate Pain">Moderate Pain-2</option>
-                <option value="Extreme Pain">Extreme Pain-3</option>
-            <input type="number" id="bp" placeholder="Resting Blood Pressure" min="50" max="250" required>
-            <input type="number" placeholder="Serum Cholesterol" required>
-            <input type="number" placeholder="Fasting Blood Sugar" required>
-            <input type="number" placeholder="Resting Electrocardiographic Results" required>
-            <input type="number" placeholder="Max Heart Rate Achieved" min="60" max="220" required>
-            <select required>
+            <span class="error" id="genderError">Please select a gender</span>
+
+            <input type="number" name="cp" id="cp" placeholder="Chest Pain Level (0-3)" min="0" max="3" required>
+            <span class="error" id="cpError">Chest Pain Level must be between 0 and 3</span>
+
+            <input type="number" name="trestbps" id="trestbps" placeholder="Resting Blood Pressure (80-200)" min="80" max="200" required>
+            <span class="error" id="trestbpsError">BP must be between 80 and 200</span>
+
+            <input type="number" name="chol" id="chol" placeholder="Serum Cholesterol (100-600)" min="100" max="600" required>
+            <span class="error" id="cholError">Cholesterol must be between 100 and 600</span>
+
+            <input type="number" name="fbs" id="fbs" placeholder="Fasting Blood Sugar (0 or 1)" min="0" max="1" required>
+            <span class="error" id="fbsError">Enter 0 (No) or 1 (Yes)</span>
+
+            <input type="number" name="restecg" id="restecg" placeholder="Resting ECG Results (0-2)" min="0" max="2" required>
+            <span class="error" id="restecgError">ECG results must be 0, 1, or 2</span>
+
+            <input type="number" name="thalach" id="thalach" placeholder="Max Heart Rate Achieved (60-220)" min="60" max="220" required>
+            <span class="error" id="thalachError">Heart Rate must be between 60 and 220</span>
+
+            <select name="exang" id="exang" required>
                 <option value="">Exercise Induced Angina</option>
-                <option value="yes">1</option>
-                <option value="no">0</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
             </select>
-            <input type="number" placeholder="Oldpeak (ST Depression)" required>
-            <input type="number" placeholder="Slope of ST Segment" required>
-            <input type="number" placeholder="Number of Major Vessels" required>
-            <input type="number" placeholder="Target (0/1)" required>
-            <button type="submit">Submit</button>
+            <span class="error" id="exangError">Select an option</span>
+
+            <input type="number" name="oldpeak" id="oldpeak" placeholder="Oldpeak (0-6)" step="0.1" min="0" max="6" required>
+            <span class="error" id="oldpeakError">Oldpeak must be between 0 and 6</span>
+
+            <input type="number" name="slope" id="slope" placeholder="Slope of ST Segment (0-2)" min="0" max="2" required>
+            <span class="error" id="slopeError">Slope must be between 0 and 2</span>
+
+            <input type="number" name="ca" id="ca" placeholder="Number of Major Vessels (0-3)" min="0" max="3" required>
+            <span class="error" id="caError">Number of vessels must be between 0 and 3</span>
+
+            <input type="number" name="thal" id="thal" placeholder="Thalassemia (0-3)" min="0" max="3" required>
+            <span class="error" id="thalError">Thalassemia must be 0, 1, 2, or 3</span>
+
+            <button type="submit">Predict</button>
         </form>
+
+        <!-- {% if result %} -->
+            <!-- <h3>Prediction: {{ result }}</h3> -->
+       <!--{% endif %}-->
     </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            function validateField(id, errorId, min, max) {
+                let value = document.getElementById(id).value;
+                if (value < min || value > max || value === "") {
+                    document.getElementById(errorId).style.display = "block";
+                    isValid = false;
+                } else {
+                    document.getElementById(errorId).style.display = "none";
+                }
+            }
+
+            function validateSelect(id, errorId) {
+                let value = document.getElementById(id).value;
+                if (value === "") {
+                    document.getElementById(errorId).style.display = "block";
+                    isValid = false;
+                } else {
+                    document.getElementById(errorId).style.display = "none";
+                }
+            }
+
+            validateField("age", "ageError", 18, 100);
+            validateSelect("gender", "genderError");
+            validateField("cp", "cpError", 0, 3);
+            validateField("trestbps", "trestbpsError", 80, 200);
+            validateField("chol", "cholError", 100, 600);
+            validateField("fbs", "fbsError", 0, 1);
+            validateField("restecg", "restecgError", 0, 2);
+            validateField("thalach", "thalachError", 60, 220);
+            validateSelect("exang", "exangError");
+            validateField("oldpeak", "oldpeakError", 0, 6);
+            validateField("slope", "slopeError", 0, 2);
+            validateField("ca", "caError", 0, 3);
+            validateField("thal", "thalError", 0, 3);
+
+            return isValid;
+        }
+    </script>
 </body>
 </html>
