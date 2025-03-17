@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - Heart Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-600 p-4 text-white flex justify-between">
+        <h1 class="text-2xl font-bold">Doctor Dashboard</h1>
+        <a href="logout" class="text-white bg-red-500 px-4 py-2 rounded-lg">Logout</a>
+    </nav>
+    
+    <div class="container mx-auto py-8 px-4">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Welcome, Doctor</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Patient List Card -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Patient List</h3>
+                <p>View and manage patient records.</p>
+                <a href="patient_list.html" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 inline-block">View Patients</a>
+            </div>
+
+            <!-- Health Data Analysis -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Health Data Analysis</h3>
+                <p>Access crucial heart-related parameters.</p>
+                <a href="health_data.html" class="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 inline-block">Analyze Data</a>
+            </div>
+
+            <!-- Prediction Results -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Prediction Results</h3>
+                <p>View AI-based heart disease predictions.</p>
+                <a href="prediction_results.html" class="mt-4 bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-700 inline-block">View Predictions</a>
+            </div>
+
+            <!-- Live Appointments -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Live Appointments</h3>
+                <p>Manage your upcoming patient appointments.</p>
+                <a href="appointments.html" class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 inline-block">Manage Appointments</a>
+            </div>
+
+            <!-- Emergency Cases -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Emergency Cases</h3>
+                <p>Quick access to high-risk patient data.</p>
+                <a href="emergency_cases.html" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 inline-block">View Emergencies</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

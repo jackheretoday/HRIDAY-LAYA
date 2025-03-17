@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Data - हृदय-lay</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: black;
+      color: white;
+    }
+
+    .card {
+      background-color: black;
+      color: white;
+      border: 1px solid white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch("/health/get_health_data/")
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            document.getElementById("health-info").innerHTML = "<p class='text-red-500'>" + data.error + "</p>";
+          } else {
+            document.getElementById("heart-rate").textContent = data.heart_rate + " BPM";
+            document.getElementById("blood-pressure").textContent = data.blood_pressure;
+            document.getElementById("cholesterol").textContent = data.cholesterol + " mg/dL";
+            document.getElementById("blood-sugar").textContent = data.blood_sugar + " mg/dL";
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+          document.getElementById("health-info").innerHTML = "<p class='text-red-500'>Failed to load data</p>";
+        });
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="bg-gradient-to-r from-red-600 via-purple-500 to-blue-600 p-4 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/home" class="text-2xl font-bold hover:text-gray-300">हृदय-lay</a>
+      <div>
+        <a href="/home" class="mx-2 hover:text-gray-300">Home</a>
+        <a href="#" class="mx-2 hover:text-gray-300">About</a>
+        <a href="#" class="mx-2 hover:text-gray-300">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Health Data Display -->
+  <div class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-white mb-8 text-center">Your Health Data</h2>
+
+    <div class="max-w-lg mx-auto">
+      <div class="card mb-4">
+        <h3 class="text-xl font-bold text-white mb-2">Heart Rate</h3>
+        <p id="heart-rate" class="text-2xl text-green-400">Loading...</p>
+      </div>
+
+      <div class="card mb-4">
+        <h3 class="text-xl font-bold text-white mb-2">Blood Pressure</h3>
+        <p id="blood-pressure" class="text-2xl text-blue-400">Loading...</p>
+      </div>
+
+      <div class="card mb-4">
+        <h3 class="text-xl font-bold text-white mb-2">Cholesterol Level</h3>
+        <p id="cholesterol" class="text-2xl text-yellow-400">Loading...</p>
+      </div>
+
+      <div class="card mb-4">
+        <h3 class="text-xl font-bold text-white mb-2">Blood Sugar Level</h3>
+        <p id="blood-sugar" class="text-2xl text-red-400">Loading...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-red-700 via-purple-600 to-blue-500 text-white p-4 text-center">
+    <p>&copy; 2025 हृदय-lay. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
