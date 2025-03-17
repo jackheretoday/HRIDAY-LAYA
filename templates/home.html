@@ -11,28 +11,31 @@
 
     body {
       font-family: 'Lora', serif;
-      background-color: black; /* Permanent Dark Mode */
-      color: white; /* White Text */
+      background-color: #ead6da; /* Permanent Dark Mode */
+      color: rgb(0, 0, 0); /* White Text */
     }
 
-    .heart-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
+    .sketchfab-container {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      margin: auto;
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    .heart-img {
-      width: 200px;
-      height: auto;
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
   <nav class="bg-gradient-to-r from-red-600 via-purple-500 to-blue-600 p-4 text-white">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="text-4xl font-bold">हृदय-lay</div>
+      <a href="home.html" class="text-4xl font-bold">हृदय-lay</a>
       <div>
         <a href="home.html" class="mx-2 hover:text-gray-300">Home</a>
         <a href="about_us.txt" class="mx-2 hover:text-gray-300">About</a>
@@ -40,6 +43,7 @@
       </div>
     </div>
   </nav>
+  
 
   <!-- Hero Section -->
   <div class="container mx-auto px-4 py-16 text-center">
@@ -47,23 +51,79 @@
     <p class="text-xl mb-8">
       Your trusted platform for heart health management. Join us in taking care of your heart.
     </p>
+
+    <!-- Interactive 3D Heart Model Card -->
+    <div class="max-w-4xl mx-auto bg-white text-black rounded-lg shadow-lg overflow-hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        
+        <!-- 3D Model Section -->
+        <div class="p-4 flex justify-center items-center bg-gray-200">
+            <iframe id="sketchfab-iframe"
+            title="Realistic Human Heart"
+            frameborder="0"
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            src="https://sketchfab.com/models/3f8072336ce94d18b3d0d055a1ece089/embed?ui_theme=dark&preload=1&transparent=1"
+            class="w-full h-64 md:h-80">
+    </iframe>
     
-    <!-- Beating Heart GIF -->
-    <div class="heart-container">
-      <img src="Tenor-unscreen-.gif" alt="Beating Heart" class="heart-img">
+        </div>
+
+        <!-- Text Content Section -->
+        <div class="p-6">
+          <h2 class="text-3xl font-bold text-gray-900">Your Heart</h2>
+          <p class="text-gray-700 mt-2">
+            Find out how your heart works, discover the warning signs and symptoms 
+            of cardiovascular disease, and learn how a healthy heart looks like with 3d visuals.
+          </p>
+          <button id="play-model" class="inline-block mt-4 px-6 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600 transition">
+            Explore!
+          </button>
+        </div>
+        
+      </div>
     </div>
 
+    <!-- Buttons for Users -->
     <div class="flex justify-center space-x-4 mt-6">
       <a href="adminlogin.html" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-red-500 transform hover:scale-105 transition-transform">Admin</a>
       <a href="patient.html" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-red-700 transform hover:scale-105 transition-transform">Patient</a>
       <a href="doctor.html" class="bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-red-500 transform hover:scale-105 transition-transform">Doctor</a>
     </div>
   </div>
-  
- <!-- Footer -->
-  <footer class="bg-gradient-to-r from-red-700 via-purple-600 to-blue-500 text-white p-4 text-center">
-    <p>&copy; 2025 हृदय-lay. All rights reserved.</p>
-  </footer>
+
+<!-- Cardiologist Locator Section -->
+<div class="container mx-auto px-4 py-16 text-center"> <!-- Increased py-16 for better spacing -->
+  <h2 class="text-3xl font-bold mb-4">Need a Cardiologist?</h2>
+  <p class="text-lg mb-6">Find the nearest heart specialist in your area with just one click.</p>
+
+  <a href="https://www.google.com/search?q=cardiologist+near+me" target="_blank" 
+     class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transform hover:scale-105 transition-transform">
+    Find a Cardiologist Near Me
+  </a>
+</div>
+
+ 
+<!-- Footer -->
+<footer class="bg-gradient-to-r from-red-700 via-purple-600 to-blue-500 text-white p-6 text-center">
+  <p>&copy; 2025 हृदय-lay. All rights reserved.</p>
+</footer>
+
+
+  <!-- Sketchfab API & JS for Auto-Start -->
+  <script>
+    document.getElementById("play-model").addEventListener("click", function() {
+      var iframe = document.getElementById("sketchfab-iframe");
+      var url = iframe.src;
+
+      // Append autostart=1 to force play on button click
+      if (!url.includes("autostart=1")) {
+        iframe.src = url + "&autostart=1";
+      }
+    });
+  </script>
 
 </body>
 </html>
