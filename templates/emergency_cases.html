@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Cases</title>
+    <style>
+        body {
+            background-color: black;
+            color: #ff4d4d;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding-top: 50px;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background: #222;
+            color: white;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ff4d4d;
+        }
+        th {
+            background: #ff4d4d;
+            color: black;
+        }
+        .high { background: red; color: white; }
+        .moderate { background: orange; color: black; }
+        .low { background: yellow; color: black; }
+    </style>
+</head>
+<body>
+    <h2>Emergency Cases (Sorted by Severity & Time)</h2>
+    <table>
+        <tr>
+            <th>Patient Name</th>
+            <th>Contact</th>
+            <th>Emergency Type</th>
+            <th>Reported Time</th>
+            <th>Severity</th>
+            <th>Status</th>
+        </tr>
+        {% for case in emergency_cases %}
+        <tr class="{% if case.severity == 3 %}high{% elif case.severity == 2 %}moderate{% else %}low{% endif %}">
+            <td>{{ case.patient_name }}</td>
+            <td>{{ case.contact_number }}</td>
+            <td>{{ case.emergency_type }}</td>
+            <td>{{ case.reported_time }}</td>
+            <td>{{ case.get_severity_display }}</td>
+            <td>{{ case.status }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No emergency cases reported.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
