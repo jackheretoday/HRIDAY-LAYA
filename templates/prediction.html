@@ -52,8 +52,8 @@
 <body>
     <div class="container">
         <h2>Heart Disease Prediction</h2>
-        <form id="predictionForm" method="POST" onsubmit="return validateForm()">
-            <!-- {% csrf_token %} -->
+        <form id="predictionForm" method="POST" action="{% url 'predict' %}" onsubmit="return validateForm()">
+            {% csrf_token %}
             <input type="number" name="age" id="age" placeholder="Age (18-100)" min="18" max="100" required>
             <span class="error" id="ageError">Age must be between 18 and 100</span>
 
@@ -104,9 +104,9 @@
             <button type="submit">Predict</button>
         </form>
 
-        <!-- {% if result %} -->
-            <!-- <h3>Prediction: {{ result }}</h3> -->
-       <!--{% endif %}-->
+        {% if result %}
+            <h3>Prediction: {{ result }}</h3>
+        {% endif %}
     </div>
 
     <script>
@@ -152,3 +152,4 @@
     </script>
 </body>
 </html>
+
