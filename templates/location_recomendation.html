@@ -66,23 +66,31 @@
                     map.setView([userLat, userLng], 14);
 
                     // User Location Marker
-                    let userMarker = L.marker([userLat, userLng]).addTo(map)
+                    L.marker([userLat, userLng]).addTo(map)
                         .bindPopup("You are here").openPopup();
 
-                    // Fetch Nearby Cardiologists from OpenStreetMap
-                    let query = `[out:json];node(around:5000,${userLat},${userLng})["healthcare"="doctor"]["speciality"="cardiology"];out;`;
+                    // Improved Overpass Query to Find Healthcare Locations
+                    let query = `
+                        [out:json];
+                        (
+                            node(around:5000,${userLat},${userLng})["healthcare"="doctor"];
+                            node(around:5000,${userLat},${userLng})["amenity"="hospital"];
+                            node(around:5000,${userLat},${userLng})["healthcare"="clinic"];
+                        );
+                        out;`;
+
                     let overpassURL = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
 
                     fetch(overpassURL)
                         .then(response => response.json())
                         .then(data => {
                             if (data.elements.length === 0) {
-                                alert("No cardiologists found nearby.");
+                                alert("No cardiologists or related healthcare facilities found nearby.");
                             } else {
                                 data.elements.forEach((place) => {
                                     let lat = place.lat;
                                     let lon = place.lon;
-                                    let name = place.tags.name || "Unknown Cardiologist";
+                                    let name = place.tags.name || "Unknown Healthcare Facility";
 
                                     let marker = L.marker([lat, lon]).addTo(map);
                                     marker.bindPopup(`<strong>${name}</strong><br>
@@ -91,9 +99,11 @@
                             }
                         })
                         .catch(error => {
-                            alert("Error fetching cardiologists. Try again later.");
+                            alert("Error fetching healthcare facilities. Try again later.");
                             console.error(error);
                         });
+                }, () => {
+                    alert("Location access denied. Please enable location services.");
                 });
             } else {
                 alert("Geolocation is not supported by this browser.");
