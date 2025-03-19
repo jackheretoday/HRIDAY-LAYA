@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Signup - हृदय-lay</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: black;
+      color: white;
+    }
+
+    .input-field {
+      background-color: black;
+      color: white;
+      border: 1px solid white;
+    }
+
+    .input-field::placeholder {
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="bg-gradient-to-r from-red-600 via-purple-500 to-blue-600 p-4 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">हृदय-lay</div>
+      <div>
+        <a href="#" class="mx-2 hover:text-gray-300">Home</a>
+        <a href="#" class="mx-2 hover:text-gray-300">About</a>
+        <a href="#" class="mx-2 hover:text-gray-300">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Doctor Signup Section -->
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-lg mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-white mb-6 text-center">Doctor Signup</h2>
+      
+      <form>
+        <!-- Full Name -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Full Name</label>
+          <input type="text" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Email</label>
+          <input type="email" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Phone Number</label>
+          <input type="tel" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your phone number" required>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Date of Birth</label>
+          <input type="date" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+        </div>
+
+        <!-- Gender -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Gender</label>
+          <select class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <!-- Medical License Number -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Medical License Number</label>
+          <input type="text" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your license number" required>
+        </div>
+
+        <!-- Specialization -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Specialization</label>
+          <select class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+            <option value="" disabled selected>Select Specialization</option>
+            <option>General Cardiology</option>
+            <option>Cardiac-Pulmonology</option>
+            <option>Pediatric Cardiology</option>
+            <option>Pulmonary Hypertension & Transplant Cardiology</option>
+            <option>General Physician</option>
+          </select>
+        </div>
+
+        <!-- Years of Experience -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Years of Experience</label>
+          <input type="number" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter experience in years" required>
+        </div>
+
+        <!-- Hospital Name -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Hospital/Clinic Name (Optional)</label>
+          <input type="text" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your workplace">
+        </div>
+
+        <!-- Upload Medical License -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Upload Medical License</label>
+          <input type="file" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" accept=".jpg,.png,.pdf" required>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-4">
+          <label class="block text-gray-300">Password</label>
+          <input type="password" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Create a strong password" required>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-6">
+          <label class="block text-gray-300">Confirm Password</label>
+          <input type="password" class="w-full px-4 py-2 input-field rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Re-enter your password" required>
+        </div>
+
+        <!-- Signup Button -->
+        <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+          Signup
+        </button>
+      </form>
+
+      <!-- Already have an account -->
+      <p class="text-center text-gray-400 mt-4">Already have an account? <a href="doctor.html" class="text-blue-400 hover:underline">Login here</a></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-red-700 via-purple-600 to-blue-500 text-white p-4 text-center">
+    <p>&copy; 2025 हृदय-lay. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
