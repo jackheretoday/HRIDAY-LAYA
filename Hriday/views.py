@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import joblib
@@ -60,14 +60,18 @@ def patient_signup(request):
 def doctor_signup(request):
     return render(request, 'doctor_signup.html')
 
+#ECG Data
+def ecg_data(request):
+    return render(request,'embed_ECG.html')
+
 # Prediction Page (Form-based submission)
 def predict(request):
     if request.method == 'POST':
         try:
             if model is None:
-                return render(request, 'prediction.html', {'result': 'Error: Model file not found'})
+                return render(request, 'result.html', {'result': 'Error: Model file not found'})
 
-            # Extract only numerical fields, excluding 'csrfmiddlewaretoken'
+            # Extract numerical input values
             features = []
             for key, value in request.POST.items():
                 if key == 'csrfmiddlewaretoken':
@@ -75,11 +79,11 @@ def predict(request):
                 try:
                     features.append(float(value))  # Convert to float
                 except ValueError:
-                    return render(request, 'prediction.html', {'result': f"Error: Invalid input '{value}' for {key}"})
+                    return render(request, 'result.html', {'result': f"Error: Invalid input '{value}' for {key}"})
 
             # Ensure correct feature count (model expects exactly 13 inputs)
             if len(features) != 13:
-                return render(request, 'prediction.html', {'result': "Error: Incorrect number of input features."})
+                return render(request, 'result.html', {'result': "Error: Incorrect number of input features."})
 
             # Convert to NumPy array and reshape
             input_data = np.array([features])
@@ -88,10 +92,10 @@ def predict(request):
             prediction = model.predict(input_data)
             result = "Heart Disease Detected" if prediction[0] else "No Heart Disease"
 
-            return render(request, 'prediction.html', {'result': result})
+            return render(request, 'result.html', {'result': result})
 
         except Exception as e:
-            return render(request, 'prediction.html', {'result': f"Error: {str(e)}"})
+            return render(request, 'result.html', {'result': f"Error: {str(e)}"})
 
     return render(request, 'prediction.html')
 
