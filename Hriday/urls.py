@@ -4,11 +4,11 @@ from . import views
 
 urlpatterns = [
     # Django Admin Panel
-    path('http://127.0.0.1:8000/admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
 
     # Webpages
     path('', views.home, name='home'),  # Default home page
-    path('http://127.0.0.1:8000/admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('patient.html', views.patient, name='patient'),
     path('adminlogin.html', views.adminlogin, name='adminlogin'),
     path('doctor.html', views.doctor, name='doctor'),
@@ -20,8 +20,8 @@ urlpatterns = [
     path('location_recomendation.html', views.location_recommendation, name='location_recommendation'),  # Add this
     path('patient_signup.html', views.patient_signup, name='patient_signup'),  # Add this
     path('doctor_signup.html', views.doctor_signup, name='doctor_signup'),  # Add this
+    path('embed_ECG.html', views.ecg_data, name='ecg_data'),  # Add this
     # Prediction Routes
     path('prediction.html', views.predict, name='predict'),  # Form-based prediction
     path('api/predict/', views.predict_heart_disease, name='predict_heart_disease'),  # API endpoint
 ]
-
